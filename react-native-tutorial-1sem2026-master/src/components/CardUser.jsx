@@ -1,8 +1,24 @@
 import { StyleSheet, View, Text } from "react-native"
 import { Image } from "expo-image"
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function CardUser({avatar, name, email}){
+export default function CardUser({id,avatar, name, email, users, setUsers}){
 
+
+    const handleDelete = async () => {
+        const response = await fetch(`http://localhost:3333/user/${id}`, {
+            method: 'DELETE'
+        });
+        const data = await response.json()
+        if(response.ok){
+            console.log("Usuário deletado com sucesso", data)
+            const newUser = users.filter(user => user.id !== id)
+            setUsers(newUser)
+        } else {
+            console.error("Erro ao deletar usuário", data)
+        }
+    }
     return (
         <View style={styles.container}>
             <Image 
@@ -10,6 +26,10 @@ export default function CardUser({avatar, name, email}){
                 //source={require("../../assets/adaptive-icon.png")} // Imagem local, pasta assets
                 source={avatar} // Imagem externa, url
             />
+            <View style={styles.action}>
+                <AntDesign name="edit" size={24} color="black" />
+                <EvilIcons name="trash" size={24} color="red" onPress={handleDelete}  />  
+            </View>
             <View>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.email}>{email}</Text>
@@ -43,5 +63,12 @@ const styles = StyleSheet.create({
     email: {
         fontSize: 14,
         color: "#505050"
+    },
+    action: {
+        position: "absolute",
+        right: 10,
+        top: 10,
+        flexDirection: "row",
+        gap: 10
     }
 })

@@ -1,7 +1,9 @@
 # Tópicos Importantes
 
 - Qual a linguagem de programação utilizada na disciplina?React Native
+
 - O que é o Node?ambiente que executa o js
+
 - O que é Framework e qual a diferença para uma biblioteca?o frmawork te orienta melhor para o seu uso ja a biblioteca não
 
 - O que é o NPM? node package menager, gerenciador de pacotes do node 
@@ -29,6 +31,8 @@ Extra
 
 - Revisão de variáveis e objetos
     - desestruturação de objetos
+
+- O que é Prop Drilling? é uma tecnica do React onde um componente pai passa uma ou mais constate(const) para o filho. passa uma const para outra pagina sem precisar repeti-la .
 
 ## Comandos Uteis
 
